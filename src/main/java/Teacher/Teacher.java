@@ -4,25 +4,29 @@ import java.util.ArrayList;
 
 public class Teacher {
     /** 教师号 */
-    String id;
+    private String id;
     /** 姓名 */
-    String name;
+    private String name;
     /** 性别 */
-    String sex;
+    private String sex;
     /** 职称 */
-    String rank;
+    private String rank;
     /** 任教课程 */
-    ArrayList<String> lesson;
+    private ArrayList<String> lesson;
     /** 班级 */
-    ArrayList<String> classes;
+    private ArrayList<String> classes;
     /** 班级数目 */
-    int numOfClasses;
+    private int numOfClasses;
     /** 理论课时 */
-    int theoryClassLength;
+    private int theoryClassLength;
     /** 实验课时 */
-    int labClassLength;
+    private int labClassLength;
 
-    Teacher(){
+    public Teacher(String name){
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
     }
 }

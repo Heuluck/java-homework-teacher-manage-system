@@ -1,7 +1,10 @@
 package com.lyx.teachermanagesys;
 
+import Teacher.Teacher;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class NewController {
     @FXML
@@ -20,4 +23,30 @@ public class NewController {
     private TextField teacherTheoryClassLength;
     @FXML
     private TextField teacherLabClassLength;
+    private MainController mainController;
+
+    void getMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+    public void initialize() {
+        teacherTheoryClassLength.textProperty().addListener((obs, oldText, newText) -> { //禁止理论课时输入数字以外的字符
+            if (!newText.matches("\\d*"))
+            {
+                teacherTheoryClassLength.setText(oldText);
+            }
+        });
+        teacherLabClassLength.textProperty().addListener((obs, oldText, newText) -> { //禁止实验课时输入数字以外的字符
+            if (!newText.matches("\\d*"))
+            {
+                teacherLabClassLength.setText(oldText);
+            }
+        });
+    }
+    @FXML
+    protected void onNewTeacherSubmit() throws IOException { //提交新老师表单
+//        String name = teacherName.getText();
+//        this.mainController.currentTeach = new Teacher(name);
+        System.out.print(mainController);
+//        this.mainController.onCurrentTeachButtonClick();
+    }
 }

@@ -25,7 +25,7 @@ public class MainController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("current-teacher-view.fxml"));
             Stage newTeacherStage = new Stage();
             newTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
-            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 640, 480));
+            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 640, 800));
             newTeacherStage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -34,5 +34,10 @@ public class MainController {
             alert.setContentText("请新建教师或搜索教师");
             alert.showAndWait();
         }
+    }
+    @FXML
+    protected void onLoadDefaultTeachButtonClick(){
+        Context.currentTeacher = new Teacher("9109111111","张三","男","正高级教师",
+                "JavaScript程序设计;Web开发;Web开发","231;232",2,2);
     }
 }

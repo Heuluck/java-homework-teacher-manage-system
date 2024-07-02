@@ -1,7 +1,7 @@
 package Teacher;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import utils.CustomArrayList;//自定义的工具类
 
 public class Teacher {
     /**
@@ -51,8 +51,9 @@ public class Teacher {
         this.name = name;
         this.sex = sex;
         this.rank = rank;
-        this.lessons = new ArrayList<String>(Arrays.asList(lessons.split(";")));//asList返回的数组仍然是静态长度的
-        this.classes = new ArrayList<String>(Arrays.asList(classes.split(";")));
+        /* 转换为ArrayList然后去重 */
+        this.lessons = CustomArrayList.deduplication(CustomArrayList.toList(lessons.split(";")));
+        this.classes = CustomArrayList.deduplication(CustomArrayList.toList(classes.split(";")));
         this.numOfClasses = this.classes.size();
         this.theoryClassLength = theoryClassLength;
         this.labClassLength = labClassLength;

@@ -1,3 +1,11 @@
 .titleText {
     -fx-font-size: 22px;
 }
+
+.classListOuter{
+    -fx-padding: 18px;
+}
+
+.lessonListOuter{
+    -fx-padding: 18px;
+}

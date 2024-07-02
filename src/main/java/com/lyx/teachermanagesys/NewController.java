@@ -23,11 +23,7 @@ public class NewController {
     private TextField teacherTheoryClassLength;
     @FXML
     private TextField teacherLabClassLength;
-    private MainController mainController;
 
-    void getMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
     public void initialize() {
         teacherTheoryClassLength.textProperty().addListener((obs, oldText, newText) -> { //禁止理论课时输入数字以外的字符
             if (!newText.matches("\\d*"))
@@ -44,9 +40,6 @@ public class NewController {
     }
     @FXML
     protected void onNewTeacherSubmit() throws IOException { //提交新老师表单
-//        String name = teacherName.getText();
-//        this.mainController.currentTeach = new Teacher(name);
-        System.out.print(mainController);
-//        this.mainController.onCurrentTeachButtonClick();
+        Context.currentTeacher = new Teacher(teacherName.getText());
     }
 }

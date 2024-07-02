@@ -21,8 +21,4 @@
             <Button styleClass="linkDB" text="连接数据库" onAction="#onNewButtonClick"/>
         </HBox>
     </VBox>
-    <HBox>
-        <fx:include fx:id="new" source="new-view.fxml"/>
-        <fx:include fx:id="currentTeacher" source="current-teacher-view.fxml"/>
-    </HBox>
 </VBox>

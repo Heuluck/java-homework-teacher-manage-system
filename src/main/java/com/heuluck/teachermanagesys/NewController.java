@@ -1,4 +1,4 @@
-package com.lyx.teachermanagesys;
+package com.heuluck.teachermanagesys;
 
 import Teacher.Teacher;
 import utils.validate;

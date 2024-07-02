@@ -1,4 +1,4 @@
-package com.lyx.teachermanagesys;
+package com.heuluck.teachermanagesys;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

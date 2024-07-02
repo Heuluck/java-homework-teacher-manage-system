@@ -10,7 +10,7 @@
 <?import java.lang.String?>
 <VBox alignment="CENTER" spacing="20.0"
       stylesheets="@CSS/new-view.css" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.lyx.teachermanagesys.NewController">
+      fx:controller="com.heuluck.teachermanagesys.NewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>

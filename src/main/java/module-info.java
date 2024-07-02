@@ -3,6 +3,6 @@ module com.lyx.teachermanagesys {
     requires javafx.fxml;
 
 
-    opens com.lyx.teachermanagesys to javafx.fxml;
-    exports com.lyx.teachermanagesys;
+    opens com.heuluck.teachermanagesys to javafx.fxml;
+    exports com.heuluck.teachermanagesys;
 }

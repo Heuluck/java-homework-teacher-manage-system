@@ -14,7 +14,43 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <VBox alignment="CENTER" spacing="20.0">
-        <Label styleClass="titleText" text="教师工作量管理系统"/>
+        <HBox alignment="CENTER">
+            <Label styleClass="titleText" text="教师"/>
+            <Label fx:id="titleTeachName"/>
+        </HBox>
+        <HBox spacing="20.0" alignment="CENTER">
+            <VBox spacing="10.0">
+                <Label text="教师号"/>
+                <Label fx:id="teachId" />
+            </VBox>
+            <VBox spacing="10.0">
+                <Label text="姓名"/>
+                <Label fx:id="teachName" />
+            </VBox>
+        </HBox>
+        <HBox spacing="20.0" alignment="CENTER">
+            <VBox spacing="10.0">
+                <Label text="性别"/>
+                <Label fx:id="teachSex" />
+            </VBox>
+            <VBox spacing="10.0">
+                <Label text="职称"/>
+                <Label fx:id="teachRank" />
+            </VBox>
+        </HBox>
+        <HBox spacing="20.0" alignment="CENTER">
+            <VBox spacing="10.0">
+                <Label text="理论课时"/>
+                <Label fx:id="theoryLength" />
+            </VBox>
+            <VBox spacing="10.0">
+                <Label text="实验课时"/>
+                <Label fx:id="labLength" />
+            </VBox>
+            <VBox spacing="10.0">
+                <Label text="单个教学任务总课时"/>
+                <Label fx:id="totalLength" />
+            </VBox>
+        </HBox>
     </VBox>
-
 </VBox>

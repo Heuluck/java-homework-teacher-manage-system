@@ -6,6 +6,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import java.lang.String?>
 <VBox alignment="CENTER" spacing="20.0"
       stylesheets="@CSS/new-view.css" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lyx.teachermanagesys.NewController">
@@ -23,7 +25,10 @@
     </VBox>
     <VBox>
         <Label text="教师性别"/>
-        <TextField fx:id="teacherSex" promptText="教师性别"/>
+        <ChoiceBox fx:id="teacherSex">
+            <String fx:value="男"/>
+            <String fx:value="女"/>
+        </ChoiceBox>
     </VBox>
     <VBox>
         <Label text="教师职称"/>

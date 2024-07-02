@@ -27,7 +27,7 @@ public class MainController {
             newTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
             newTeacherStage.setScene(new Scene(fxmlLoader.load(), 640, 480));
             newTeacherStage.show();
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("未选择教师");
             alert.setHeaderText("当前未选择任何教师");

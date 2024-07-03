@@ -55,6 +55,7 @@ public class NewController {
             Context.currentTeacher = new Teacher(teacherId.getText(), teacherName.getText(), teacherSex.getValue(), teacherRank.getText(),
                     teacherLessons.getText(),teacherClasses.getText(),
                     Integer.parseInt(teacherTheoryClassLength.getText()),Integer.parseInt(teacherLabClassLength.getText()));
+            Context.allTeachers.add(Context.currentTeacher);
             Stage stage = (Stage) teacherName.getScene().getWindow();
             stage.close();
         } else {

@@ -27,8 +27,6 @@ public class CurrentTeacherController {
         Teacher currentTeacher = Context.currentTeacher;
         titleTeachName.setText(currentTeacher.getName());
         ObservableList<Teacher> teacher = FXCollections.observableArrayList(currentTeacher);
-//        teacher.add(currentTeacher);
-//        id.setCellValueFactory(new PropertyValueFactory<Teacher,String>("id"));
         dataTable.setItems(teacher);
 
         /* 班级列表 */

@@ -14,20 +14,19 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox alignment="CENTER" spacing="20.0"
-      stylesheets="@CSS/current-teacher-view.css" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.heuluck.teachermanagesys.CurrentTeacherController">
+      stylesheets="@CSS/list-view.css" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.heuluck.teachermanagesys.ListController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <BorderPane>
         <top>
             <HBox alignment="CENTER" styleClass="titleOuter">
-                <Label styleClass="titleText" fx:id="titleTeachName"/>
-                <Label styleClass="titleText" text="教师"/>
+                <Label styleClass="titleText" text="所有教师"/>
             </HBox>
         </top>
         <center>
-            <TableView fx:id="dataTable" editable="true" fixedCellSize="40.0" prefHeight="65.0">
+            <TableView fx:id="dataTable" editable="true">
                 <columns>
                     <TableColumn prefWidth="125.0" sortable="false" text="教师号">
                         <!--设置一下对应Teacher类里面的值-->
@@ -69,26 +68,4 @@
             </TableView>
         </center>
     </BorderPane>
-    <VBox>
-        <HBox spacing="30.0" alignment="CENTER">
-            <VBox spacing="10.0">
-                <HBox spacing="10.0">
-                    <Label text="教学班级"/>
-                    <Button text="添加"/>
-                </HBox>
-                <ScrollPane styleClass="classListOuter" fitToWidth="true" minWidth="300.0">
-                    <VBox fx:id="teachClasses" spacing="10.0"/>
-                </ScrollPane>
-            </VBox>
-            <VBox spacing="10.0">
-                <HBox spacing="10.0">
-                    <Label text="认教课程"/>
-                    <Button text="添加"/>
-                </HBox>
-                <ScrollPane styleClass="lessonListOuter" fitToWidth="true" minWidth="300.0">
-                    <VBox fx:id="teachLessons" spacing="10.0"/>
-                </ScrollPane>
-            </VBox>
-        </HBox>
-    </VBox>
 </VBox>

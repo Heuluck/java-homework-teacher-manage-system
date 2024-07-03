@@ -25,7 +25,7 @@ public class MainController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("current-teacher-view.fxml"));
             Stage newTeacherStage = new Stage();
             newTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
-            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 640, 800));
+            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 800));
             newTeacherStage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);

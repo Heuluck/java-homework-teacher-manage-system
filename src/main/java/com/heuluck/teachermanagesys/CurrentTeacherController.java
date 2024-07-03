@@ -1,9 +1,14 @@
 package com.heuluck.teachermanagesys;
 
 import Teacher.Teacher;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -11,34 +16,20 @@ public class CurrentTeacherController {
     @FXML
     private Label titleTeachName;
     @FXML
-    private Label teachId;
-    @FXML
-    private Label teachName;
-    @FXML
-    private Label teachSex;
-    @FXML
-    private Label teachRank;
-    @FXML
     private VBox teachLessons;
     @FXML
     private VBox teachClasses;
+
     @FXML
-    private Label theoryLength;
-    @FXML
-    private Label labLength;
-    @FXML
-    private Label totalLength;
+    private TableView<Teacher> dataTable;
     
     public void initialize() {
         Teacher currentTeacher = Context.currentTeacher;
         titleTeachName.setText(currentTeacher.getName());
-        teachId.setText(currentTeacher.getId());
-        teachName.setText(currentTeacher.getName());
-        teachSex.setText(currentTeacher.getSex());
-        teachRank.setText(currentTeacher.getRank());
-        theoryLength.setText(String.format("%d",currentTeacher.getTheoryClassLength()));
-        labLength.setText(String.format("%d",currentTeacher.getLabClassLength()));
-        totalLength.setText(String.format("%.1f",currentTeacher.getTotalLength()));
+        ObservableList<Teacher> teacher = FXCollections.observableArrayList(currentTeacher);
+//        teacher.add(currentTeacher);
+//        id.setCellValueFactory(new PropertyValueFactory<Teacher,String>("id"));
+        dataTable.setItems(teacher);
 
         /* 班级列表 */
         for(String singleClass : currentTeacher.getClasses()){

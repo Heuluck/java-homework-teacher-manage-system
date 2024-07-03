@@ -4,5 +4,6 @@ module com.lyx.teachermanagesys {
 
 
     opens com.heuluck.teachermanagesys to javafx.fxml;
+    opens Teacher to javafx.base;
     exports com.heuluck.teachermanagesys;
 }

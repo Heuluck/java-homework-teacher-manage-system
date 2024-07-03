@@ -21,10 +21,13 @@
     </padding>
     <BorderPane>
         <top>
-            <HBox alignment="CENTER" styleClass="titleOuter">
-                <Label styleClass="titleText" fx:id="titleTeachName"/>
-                <Label styleClass="titleText" text="教师"/>
-            </HBox>
+            <VBox alignment="CENTER" styleClass="titleOuter" spacing="10.0">
+                <HBox alignment="CENTER">
+                    <Label styleClass="titleText" fx:id="titleTeachName"/>
+                    <Label styleClass="titleText" text="教师"/>
+                </HBox>
+                <Button text="查看所有教师" onAction="#openList"/>
+            </VBox>
         </top>
         <center>
             <TableView fx:id="dataTable" editable="true" fixedCellSize="40.0" prefHeight="65.0">

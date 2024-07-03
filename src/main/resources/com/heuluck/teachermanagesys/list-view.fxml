@@ -21,9 +21,10 @@
     </padding>
     <BorderPane>
         <top>
-            <HBox alignment="CENTER" styleClass="titleOuter">
+            <VBox alignment="CENTER" styleClass="titleOuter">
                 <Label styleClass="titleText" text="所有教师"/>
-            </HBox>
+                <Label text="双击查看教师详情"/>
+            </VBox>
         </top>
         <center>
             <TableView fx:id="dataTable" editable="true">

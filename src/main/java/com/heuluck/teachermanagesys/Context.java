@@ -7,5 +7,5 @@ import java.util.ArrayList;
 /* 用来储存共用的变量 */
 public class Context {
     public static Teacher currentTeacher;
-    public static ArrayList<Teacher> allTeachers;
+    public static ArrayList<Teacher> allTeachers = new ArrayList<Teacher>();
 }

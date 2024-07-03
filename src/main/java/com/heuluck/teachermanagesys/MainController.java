@@ -26,10 +26,10 @@ public class MainController {
     protected void onCurrentTeachButtonClick() throws IOException { //新建教师按钮
         if (Context.currentTeacher != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("current-teacher-view.fxml"));
-            Stage newTeacherStage = new Stage();
-            newTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
-            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
-            newTeacherStage.show();
+            Stage currentTeacherStage = new Stage();
+            currentTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
+            currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
+            currentTeacherStage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("未选择教师");
@@ -43,10 +43,10 @@ public class MainController {
     protected void onOpenListButtonClick() throws IOException {
         if (Context.allTeachers != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("list-view.fxml"));
-            Stage newTeacherStage = new Stage();
-            newTeacherStage.setTitle("所有教师 - 教师管理系统");
-            newTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
-            newTeacherStage.show();
+            Stage listStage = new Stage();
+            listStage.setTitle("所有教师 - 教师管理系统");
+            listStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
+            listStage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("没有教师");

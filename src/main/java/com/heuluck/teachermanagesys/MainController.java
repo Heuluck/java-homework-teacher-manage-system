@@ -1,5 +1,6 @@
 package com.heuluck.teachermanagesys;
 
+import Database.MysqlConnection;
 import Teacher.Teacher;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONException;
@@ -26,6 +27,11 @@ import java.util.Optional;
 
 public class MainController {
     Teacher currentTeach;
+
+    public void initialize() {
+        MysqlConnection a = new MysqlConnection();
+        a.getAll();
+    }
 
     @FXML
     protected void onNewButtonClick() throws IOException { //新建教师按钮
@@ -73,6 +79,7 @@ public class MainController {
     @FXML
     protected void onLinkDBButtonClick() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         alert.showAndWait();
     }
 

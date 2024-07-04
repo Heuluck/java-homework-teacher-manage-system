@@ -25,6 +25,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21</version>
         </dependency>
+        <!-- 读写JSON文件用 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -39,6 +40,12 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2-extension</artifactId>
             <version>2.0.51</version>
+        </dependency>
+        <!--MySQL用-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

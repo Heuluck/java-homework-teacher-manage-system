@@ -19,6 +19,11 @@ public class ListController {
     @FXML
     private TableView<Teacher> dataTable;
 
+    @FXML
+    protected void exportAll(){
+
+    }
+
     public void initialize() throws IOException {
         ArrayList<Teacher> teachers = Context.allTeachers;
         ObservableList<Teacher> teacher = FXCollections.observableArrayList(teachers);

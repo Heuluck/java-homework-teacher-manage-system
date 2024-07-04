@@ -77,7 +77,7 @@
             <VBox spacing="10.0">
                 <HBox spacing="10.0">
                     <Label text="教学班级"/>
-                    <Button text="添加"/>
+                    <Button text="添加" onAction="#addClasses"/>
                 </HBox>
                 <ScrollPane styleClass="classListOuter" fitToWidth="true" minWidth="300.0">
                     <VBox fx:id="teachClasses" spacing="10.0"/>
@@ -86,7 +86,7 @@
             <VBox spacing="10.0">
                 <HBox spacing="10.0">
                     <Label text="认教课程"/>
-                    <Button text="添加"/>
+                    <Button text="添加" onAction="#addLessons"/>
                 </HBox>
                 <ScrollPane styleClass="lessonListOuter" fitToWidth="true" minWidth="300.0">
                     <VBox fx:id="teachLessons" spacing="10.0"/>

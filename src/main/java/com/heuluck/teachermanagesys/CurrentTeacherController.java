@@ -1,18 +1,23 @@
 package com.heuluck.teachermanagesys;
 
 import Teacher.Teacher;
+import com.alibaba.fastjson2.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
+import java.util.Optional;
+
+import static com.heuluck.teachermanagesys.Context.allTeachers;
+import static com.heuluck.teachermanagesys.Context.currentTeacher;
 
 public class CurrentTeacherController {
     @FXML
@@ -24,7 +29,7 @@ public class CurrentTeacherController {
 
     @FXML
     private TableView<Teacher> dataTable;
-    
+
     public void initialize() {
         Teacher currentTeacher = Context.currentTeacher;
         titleTeachName.setText(currentTeacher.getName());
@@ -32,24 +37,46 @@ public class CurrentTeacherController {
         dataTable.setItems(teacher);
 
         /* 班级列表 */
-        for(String singleClass : currentTeacher.getClasses()){
+        teachClasses.getChildren().clear();
+        for (String singleClass : currentTeacher.getClasses()) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
-            Label label = new Label(singleClass+"班");
+            Label label = new Label(singleClass + "班");
             Button button = new Button("删除");
-            button.setOnAction(event -> deleteClass(singleClass+"删除"));
+            button.setOnAction(event -> {
+                currentTeacher.deleteClass(singleClass);
+                allTeachers.forEach((teacher1)->{
+                    if(teacher1.getId().equals(currentTeacher.getId())){
+                        teacher1.deleteClass(singleClass);
+                    }
+                });
+                initialize();
+            });
 
             hbox.getChildren().addAll(label, button);
             teachClasses.getChildren().add(hbox);
         }
-
+//        String text = "{\"id\": 2,\"name\": \"fastjson2\"}";
+//        JSONObject obj = JSON.parseObject(text);
+//        int id = obj.getIntValue("id");
+//        String name = obj.getString("name");
+//        System.out.print(id+"sad"+name);
         /* 课程列表 */
-        for(String singleLesson : currentTeacher.getLessons()){
+        teachLessons.getChildren().clear();
+        for (String singleLesson : currentTeacher.getLessons()) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
             Label label = new Label(singleLesson);
             Button button = new Button("删除");
-            button.setOnAction(event -> deleteClass(singleLesson+"删除"));
+            button.setOnAction(event -> {
+                currentTeacher.deleteLesson(singleLesson);
+                allTeachers.forEach((teacher1)->{
+                    if(teacher1.getId().equals(currentTeacher.getId())){
+                        teacher1.deleteLesson(singleLesson);
+                    }
+                });
+                initialize();
+            });
 
             hbox.getChildren().addAll(label, button);
             teachLessons.getChildren().add(hbox);
@@ -58,7 +85,7 @@ public class CurrentTeacherController {
 
     @FXML
     protected void openList() throws IOException {
-        if (Context.allTeachers != null) {
+        if (allTeachers != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("list-view.fxml"));
             Stage listStage = new Stage();
             listStage.setTitle("所有教师 - 教师管理系统");
@@ -76,7 +103,38 @@ public class CurrentTeacherController {
     }
 
     @FXML
-    protected static void deleteClass(String singleClass){
-        System.out.print(singleClass);
+    protected void addClasses(){
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("新增班级");
+        dialog.setHeaderText("新建教学班级");
+        dialog.setContentText("新增的教学班级（多个班级以英文分号;分割）");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(classes -> {
+            currentTeacher.addClasses(classes);
+            allTeachers.forEach((teacher1)->{
+                if(teacher1.getId().equals(currentTeacher.getId())){
+                    teacher1.addClasses(classes);
+                }
+            });
+            initialize();
+        });
+    }
+
+    @FXML
+    protected void addLessons(){
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("新增课程");
+        dialog.setHeaderText("新建教学课程");
+        dialog.setContentText("新增的教学课程（多个课程以英文分号;分割）");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(lessons -> {
+            currentTeacher.addLessons(lessons);
+            allTeachers.forEach((teacher1)->{
+                if(teacher1.getId().equals(currentTeacher.getId())){
+                    teacher1.addLessons(lessons);
+                }
+            });
+            initialize();
+        });
     }
 }

@@ -47,6 +47,7 @@ public class Teacher {
 
     public Teacher(String id, String name, String sex, String rank, String lessons,
                    String classes, int theoryClassLength, int labClassLength) {
+        super();
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -126,5 +127,23 @@ public class Teacher {
 
     public void setTheoryClassLength(int theoryClassLength) {
         this.theoryClassLength = theoryClassLength;
+    }
+
+    public void addClasses(String classes){
+        this.classes.addAll(CustomArrayList.toList(classes.split(";")));
+        CustomArrayList.deduplication(this.classes);
+    }
+
+    public void addLessons(String lessons){
+        this.lessons.addAll(CustomArrayList.toList(lessons.split(";")));
+        CustomArrayList.deduplication(this.lessons);
+    }
+
+    public void deleteClass(String singleClass){
+        this.classes.remove(singleClass);
+    }
+
+    public void deleteLesson(String singleLesson){
+        this.lessons.remove(singleLesson);
     }
 }

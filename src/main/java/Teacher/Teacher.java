@@ -129,6 +129,14 @@ public class Teacher {
         this.theoryClassLength = theoryClassLength;
     }
 
+    public void setClasses(ArrayList<String> classes) {
+        this.classes = classes;
+    }
+
+    public void setLessons(ArrayList<String> lessons) {
+        this.lessons = lessons;
+    }
+
     public void addClasses(String classes){
         this.classes.addAll(CustomArrayList.toList(classes.split(";")));
         CustomArrayList.deduplication(this.classes);

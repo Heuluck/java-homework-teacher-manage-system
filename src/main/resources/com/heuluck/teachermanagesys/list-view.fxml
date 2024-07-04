@@ -21,10 +21,10 @@
     </padding>
     <BorderPane>
         <top>
-            <VBox alignment="CENTER" styleClass="titleOuter">
+            <VBox alignment="CENTER" styleClass="titleOuter" spacing="10">
                 <Label styleClass="titleText" text="所有教师"/>
                 <Label text="双击查看教师详情"/>
-                <Button text="导出" onAction="#exportAll" />
+                <Button text="导出所有" onAction="#exportAll" />
             </VBox>
         </top>
         <center>

@@ -169,4 +169,12 @@ public class Teacher {
             this.totalLength = 2 * (theoryClassLength + labClassLength);
         else this.totalLength = 2.5 * (theoryClassLength + labClassLength);
     }
+
+    public boolean isOnlyOneClass() {
+        return classes.size() <= 1;
+    }
+
+    public boolean isOnlyOneLesson() {
+        return lessons.size() <= 1;
+    }
 }

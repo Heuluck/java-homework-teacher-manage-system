@@ -48,38 +48,38 @@
         <center>
             <TableView fx:id="dataTable" editable="true">
                 <columns>
-                    <TableColumn prefWidth="125.0" sortable="false" text="教师号">
+                    <TableColumn prefWidth="125.0" text="教师号">
                         <!--设置一下对应Teacher类里面的值-->
                         <cellValueFactory>
                             <PropertyValueFactory property="id"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="100.0" sortable="false" text="姓名">
+                    <TableColumn prefWidth="100.0" text="姓名">
                         <cellValueFactory>
                             <PropertyValueFactory property="name"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="50.0" sortable="false" text="性别">
+                    <TableColumn prefWidth="50.0" text="性别">
                         <cellValueFactory>
                             <PropertyValueFactory property="sex"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="100.0" sortable="false" text="职称">
+                    <TableColumn prefWidth="100.0" text="职称">
                         <cellValueFactory>
                             <PropertyValueFactory property="rank"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="75.0" sortable="false" text="理论课时">
+                    <TableColumn prefWidth="75.0" text="理论课时">
                         <cellValueFactory>
                             <PropertyValueFactory property="theoryClassLength"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="75.0" sortable="false" text="实验课时">
+                    <TableColumn prefWidth="75.0" text="实验课时">
                         <cellValueFactory>
                             <PropertyValueFactory property="labClassLength"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="125.0" sortable="false" text="单个教学任务总课时">
+                    <TableColumn prefWidth="125.0" text="单个教学任务总课时">
                         <cellValueFactory>
                             <PropertyValueFactory property="totalLength"/>
                         </cellValueFactory>

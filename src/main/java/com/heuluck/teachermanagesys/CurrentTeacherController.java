@@ -46,17 +46,25 @@ public class CurrentTeacherController {
             Label label = new Label(singleClass + "班");
             Button button = new Button("删除");
             button.setOnAction(event -> {
-                currentTeacher.deleteClass(singleClass);
-                allTeachers.forEach((teacher1)->{
-                    if(teacher1.getId().equals(currentTeacher.getId())){
-                        teacher1.deleteClass(singleClass);
+                if (!currentTeacher.isOnlyOneClass()) {
+                    currentTeacher.deleteClass(singleClass);
+                    allTeachers.forEach((teacher1) -> {
+                        if (teacher1.getId().equals(currentTeacher.getId())) {
+                            teacher1.deleteClass(singleClass);
+                        }
+                    });
+                    if (Context.isSQLConnect) {
+                        MysqlConnection connection = new MysqlConnection();
+                        connection.insert(Context.currentTeacher);
                     }
-                });
-                if(Context.isSQLConnect){
-                    MysqlConnection connection = new MysqlConnection();
-                    connection.insert(Context.currentTeacher);
+                    initialize();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("警告");
+                    alert.setHeaderText("这是最后一个班级");
+                    alert.setContentText("请添加其他班级后再进行删除");
+                    alert.showAndWait();
                 }
-                initialize();
             });
 
             hbox.getChildren().addAll(label, button);
@@ -70,17 +78,25 @@ public class CurrentTeacherController {
             Label label = new Label(singleLesson);
             Button button = new Button("删除");
             button.setOnAction(event -> {
-                currentTeacher.deleteLesson(singleLesson);
-                allTeachers.forEach((teacher1)->{
-                    if(teacher1.getId().equals(currentTeacher.getId())){
-                        teacher1.deleteLesson(singleLesson);
+                if (!currentTeacher.isOnlyOneLesson()) {
+                    currentTeacher.deleteLesson(singleLesson);
+                    allTeachers.forEach((teacher1) -> {
+                        if (teacher1.getId().equals(currentTeacher.getId())) {
+                            teacher1.deleteLesson(singleLesson);
+                        }
+                    });
+                    if (Context.isSQLConnect) {
+                        MysqlConnection connection = new MysqlConnection();
+                        connection.insert(Context.currentTeacher);
                     }
-                });
-                if(Context.isSQLConnect){
-                    MysqlConnection connection = new MysqlConnection();
-                    connection.insert(Context.currentTeacher);
+                    initialize();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("警告");
+                    alert.setHeaderText("这是最后一个课程");
+                    alert.setContentText("请添加其他课程后再进行删除");
+                    alert.showAndWait();
                 }
-                initialize();
             });
 
             hbox.getChildren().addAll(label, button);
@@ -108,18 +124,18 @@ public class CurrentTeacherController {
     }
 
     @FXML
-    protected void alter () throws IOException {
+    protected void alter() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("alter-view.fxml"));
         Stage alterTeacherStage = new Stage();
         alterTeacherStage.setTitle("修改教师 - 教师管理系统");
         alterTeacherStage.setScene(new Scene(fxmlLoader.load(), 300, 600));
         alterTeacherStage.show();
-        alterTeacherStage.setOnHidden(e->initialize());
+        alterTeacherStage.setOnHidden(e -> initialize());
 
     }
 
     @FXML
-    protected void addClasses(){
+    protected void addClasses() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("新增班级");
         dialog.setHeaderText("新建教学班级");
@@ -127,12 +143,12 @@ public class CurrentTeacherController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(classes -> {
             currentTeacher.addClasses(classes);
-            allTeachers.forEach((teacher1)->{
-                if(teacher1.getId().equals(currentTeacher.getId())){
+            allTeachers.forEach((teacher1) -> {
+                if (teacher1.getId().equals(currentTeacher.getId())) {
                     teacher1.addClasses(classes);
                 }
             });
-            if(Context.isSQLConnect){
+            if (Context.isSQLConnect) {
                 MysqlConnection connection = new MysqlConnection();
                 connection.insert(Context.currentTeacher);
             }
@@ -141,7 +157,7 @@ public class CurrentTeacherController {
     }
 
     @FXML
-    protected void addLessons(){
+    protected void addLessons() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("新增课程");
         dialog.setHeaderText("新建教学课程");
@@ -149,12 +165,12 @@ public class CurrentTeacherController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(lessons -> {
             currentTeacher.addLessons(lessons);
-            allTeachers.forEach((teacher1)->{
-                if(teacher1.getId().equals(currentTeacher.getId())){
+            allTeachers.forEach((teacher1) -> {
+                if (teacher1.getId().equals(currentTeacher.getId())) {
                     teacher1.addLessons(lessons);
                 }
             });
-            if(Context.isSQLConnect){
+            if (Context.isSQLConnect) {
                 MysqlConnection connection = new MysqlConnection();
                 connection.insert(Context.currentTeacher);
             }

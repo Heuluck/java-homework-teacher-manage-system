@@ -28,11 +28,6 @@ import java.util.Optional;
 public class MainController {
     Teacher currentTeach;
 
-    public void initialize() {
-        MysqlConnection a = new MysqlConnection();
-        a.getAll();
-    }
-
     @FXML
     protected void onNewButtonClick() throws IOException { //新建教师按钮
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("new-view.fxml"));
@@ -77,10 +72,12 @@ public class MainController {
     }
 
     @FXML
-    protected void onLinkDBButtonClick() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        alert.showAndWait();
+    protected void onLinkDBButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("SQL-view.fxml"));
+        Stage listStage = new Stage();
+        listStage.setTitle("连接数据库 - 教师管理系统");
+        listStage.setScene(new Scene(fxmlLoader.load(), 300, 600));
+        listStage.show();
     }
 
     @FXML

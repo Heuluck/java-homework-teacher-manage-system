@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import java.lang.String?>
+<VBox alignment="CENTER" spacing="20.0"
+      stylesheets="@CSS/new-view.css" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.heuluck.teachermanagesys.SQLController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <Label text="连接数据库" styleClass="titleText"/>
+    <VBox>
+        <Label text="IP"/>
+        <TextField fx:id="DBIp" promptText="数据库IP地址" text="localhost"/>
+    </VBox>
+    <VBox>
+        <Label text="端口"/>
+        <TextField fx:id="DBPort" promptText="数据库端口" text="3306"/>
+    </VBox>
+    <VBox>
+        <Label text="数据库名"/>
+        <TextField fx:id="DBName" promptText="数据库名" text="teachermanage"/>
+    </VBox>
+    <VBox>
+        <Label text="用户名"/>
+        <TextField fx:id="DBUser" promptText="数据库用户名" text="Teacher_Manager" />
+    </VBox>
+    <VBox>
+        <Label text="密码"/>
+        <TextField fx:id="DBPwd" promptText="数据库密码" />
+    </VBox>
+    <Button text="连接并加载" onAction="#onSubmit" />
+</VBox>

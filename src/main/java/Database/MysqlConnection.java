@@ -163,7 +163,6 @@ public class MysqlConnection {
             }
         });
         try {
-//            stmt.close();
             conn.close();
         } catch (SQLException se) {
             System.out.println("关闭数据库时出现数据库错误：" + se.toString());

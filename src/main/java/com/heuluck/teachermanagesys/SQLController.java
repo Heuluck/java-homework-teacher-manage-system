@@ -50,12 +50,16 @@ public class SQLController {
                     alert.setContentText("数据库初始化成功");
                     alert.showAndWait();
                     Context.isSQLConnect = true;
+                    Stage stage = (Stage) DBName.getScene().getWindow();
+                    stage.close();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("初始化失败");
                     alert.setHeaderText("表teacher不存在，且自动创建失败");
                     alert.setContentText("数据库初始化失败");
                     alert.showAndWait();
+                    Stage stage = (Stage) DBName.getScene().getWindow();
+                    stage.close();
                 }
             }
         } else {
@@ -84,6 +88,8 @@ public class SQLController {
             handleMerge();
         } else if (result.isPresent() && result.get() == buttonReplace) {
             Context.allTeachers = Context.SQLTeachers;
+            Stage stage = (Stage) DBName.getScene().getWindow();
+            stage.close();
         } else {
             Context.SQLTeachers = new ArrayList<Teacher>();
             Context.isSQLConnect = false;
@@ -122,6 +128,8 @@ public class SQLController {
                 Context.allTeachers.addAll(Context.SQLTeachers);
                 MysqlConnection connection = new MysqlConnection();
                 connection.InsertAll();
+                Stage stage = (Stage) DBName.getScene().getWindow();
+                stage.close();
             } else if (result.isPresent() && result.get() == buttonLocal) {
                 Context.SQLTeachers.removeIf(SQLData -> {
                     String SQLId = SQLData.getId();
@@ -130,12 +138,18 @@ public class SQLController {
                 Context.allTeachers.addAll(Context.SQLTeachers);
                 MysqlConnection connection = new MysqlConnection();
                 connection.InsertAll();
+                Stage stage = (Stage) DBName.getScene().getWindow();
+                stage.close();
             } else {
                 Context.SQLTeachers = new ArrayList<Teacher>();
                 Context.isSQLConnect = false;
+                Stage stage = (Stage) DBName.getScene().getWindow();
+                stage.close();
             }
-        } else {
+        } else {//不存在冲突
             Context.allTeachers.addAll(Context.SQLTeachers);
+            Stage stage = (Stage) DBName.getScene().getWindow();
+            stage.close();
         }
     }
 }

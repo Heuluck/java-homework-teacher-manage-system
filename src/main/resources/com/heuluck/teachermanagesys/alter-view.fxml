@@ -50,5 +50,5 @@
         <Label text="教师实验课时"/>
         <TextField fx:id="teacherLabClassLength" promptText="教师实验课时"/>
     </VBox>
-    <Button text="提交" onAction="#onNewTeacherSubmit" />
+    <Button text="提交" onAction="#onAlterTeacherSubmit" />
 </VBox>

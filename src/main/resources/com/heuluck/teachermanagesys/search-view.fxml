@@ -13,6 +13,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import java.lang.String?>
 <VBox alignment="CENTER" spacing="20.0"
       stylesheets="@CSS/list-view.css" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.heuluck.teachermanagesys.SearchController">
@@ -25,13 +27,21 @@
                 <Label styleClass="titleText" text="搜索教师"/>
                 <Label text="双击查看教师详情"/>
                 <HBox alignment="CENTER" spacing="5.0">
-                    <Label text="搜索教师ID"/>
-                    <TextField fx:id="teacherIDSearch" promptText="根据教师ID搜索教师"/>
-                    <Button onAction="#searchID" text="搜索" />
+                    <Label text="根据"/>
+                    <ChoiceBox fx:id="searchRef">
+                        <String fx:value="ID"/>
+                        <String fx:value="姓名"/>
+                        <String fx:value="性别"/>
+                        <String fx:value="职称"/>
+                    </ChoiceBox>
+                    <Label text="搜索教师"/>
+                    <TextField fx:id="teacherSearch" promptText="搜索教师"/>
+                    <Button onAction="#search" text="搜索" />
                 </HBox>
                 <HBox alignment="CENTER" spacing="5.0">
                     <Button text="导出所有" onAction="#exportAll" />
                     <Button text="连接数据库" onAction="#linkDB" />
+                    <Button text="重置搜索" onAction="#initialize" />
                 </HBox>
             </VBox>
         </top>

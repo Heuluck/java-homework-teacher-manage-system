@@ -90,8 +90,8 @@ public class CurrentTeacherController {
 
     @FXML
     protected void openList() throws IOException {
-        if (allTeachers != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("list-view.fxml"));
+        if (Context.allTeachers != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("search-view.fxml"));
             Stage listStage = new Stage();
             listStage.setTitle("所有教师 - 教师管理系统");
             listStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
@@ -99,7 +99,7 @@ public class CurrentTeacherController {
             Stage stage = (Stage) dataTable.getScene().getWindow();
             stage.close();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("没有教师");
             alert.setHeaderText("当前没有任何教师");
             alert.setContentText("请新建教师或搜索教师");

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,7 +23,9 @@ public class SearchController {
     @FXML
     private TableView<Teacher> dataTable;
     @FXML
-    private TextField teacherIDSearch;
+    private TextField teacherSearch;
+    @FXML
+    private ChoiceBox<String> searchRef;
 
     @FXML
     protected void exportAll() throws Exception {
@@ -48,7 +51,7 @@ public class SearchController {
         listStage.setTitle("连接数据库 - 教师管理系统");
         listStage.setScene(new Scene(fxmlLoader.load(), 300, 600));
         listStage.show();
-        listStage.setOnHidden(e->{
+        listStage.setOnHidden(e -> {
             try {
                 initialize();
             } catch (IOException ex) {
@@ -58,13 +61,10 @@ public class SearchController {
     }
 
     @FXML
-    protected void searchID() throws IOException {
-        if (!teacherIDSearch.getText().isEmpty()) {
+    protected void search() throws IOException {
+        if (!teacherSearch.getText().isEmpty()) {
             ArrayList<Teacher> teachers = new ArrayList<Teacher>();
-            Context.allTeachers.forEach(teacher -> {
-                if(teacher.getId().contains(teacherIDSearch.getText()))
-                    teachers.add(teacher);
-            });
+            teachers = handleSearch();
             ObservableList<Teacher> teacher = FXCollections.observableArrayList(teachers);
             dataTable.setRowFactory(singleTableView -> {
                 TableRow<Teacher> teacherRow = new TableRow<Teacher>();
@@ -90,12 +90,53 @@ public class SearchController {
             });
             dataTable.setItems(teacher);
             dataTable.refresh();
-        }else initialize();
+        } else initialize();
+    }
+
+    private ArrayList<Teacher> handleSearch() {
+        ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+        System.out.print(searchRef.getValue());
+        switch (searchRef.getValue()) {
+            case "ID":
+                Context.allTeachers.forEach(teacher -> {
+                    if (teacher.getId().contains(teacherSearch.getText()))
+                        teachers.add(teacher);
+                });
+                break;
+            case "姓名":
+                Context.allTeachers.forEach(teacher -> {
+                    if (teacher.getName().contains(teacherSearch.getText()))
+                        teachers.add(teacher);
+                });
+                break;
+            case "性别":
+                Context.allTeachers.forEach(teacher -> {
+                    if (teacher.getSex().contains(teacherSearch.getText()))
+                        teachers.add(teacher);
+                });
+                break;
+            case "职称":
+                Context.allTeachers.forEach(teacher -> {
+                    if (teacher.getRank().contains(teacherSearch.getText()))
+                        teachers.add(teacher);
+                });
+                break;
+            default:
+                System.out.print("sfa");
+                Context.allTeachers.forEach(teacher -> {
+                    if (teacher.getId().contains(teacherSearch.getText()))
+                        teachers.add(teacher);
+                });
+                break;
+        }
+        return teachers;
     }
 
     public void initialize() throws IOException {
+        searchRef.setValue("ID");
         ArrayList<Teacher> teachers = Context.allTeachers;
         ObservableList<Teacher> teacher = FXCollections.observableArrayList(teachers);
+        teacherSearch.setText("");
         dataTable.setRowFactory(singleTableView -> {
             TableRow<Teacher> teacherRow = new TableRow<Teacher>();
             teacherRow.setOnMouseClicked(clickE -> {

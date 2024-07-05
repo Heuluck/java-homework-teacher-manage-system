@@ -28,7 +28,7 @@
                 </HBox>
                 <HBox alignment="CENTER" spacing="10.0">
                     <Button text="修改教师" onAction="#alter"/>
-                    <Button text="查看所有教师" onAction="#openList"/>
+                    <Button text="查看/搜索所有教师" onAction="#openList"/>
                 </HBox>
             </VBox>
         </top>

@@ -59,7 +59,7 @@ public class AlterController {
     }
 
     @FXML
-    protected void onNewTeacherSubmit() throws IOException { //提交新老师表单
+    protected void onAlterTeacherSubmit() throws IOException { //提交新老师表单
         if (teacherSex.getValue() != null &&
                 validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
                         teacherClasses, teacherTheoryClassLength, teacherLabClassLength)) {
@@ -67,15 +67,18 @@ public class AlterController {
             Context.currentTeacher = new Teacher(teacherId.getText(), teacherName.getText(), teacherSex.getValue(), teacherRank.getText(),
                     teacherLessons.getText(), teacherClasses.getText(),
                     Integer.parseInt(teacherTheoryClassLength.getText()), Integer.parseInt(teacherLabClassLength.getText()));
-            Context.allTeachers.forEach(teacher -> {
-                if(teacher.getId().equals(Context.currentTeacher.getId()))
-                    teacher = Context.currentTeacher;
-            });
-            Stage stage = (Stage) teacherName.getScene().getWindow();
+            for (int i = 0; i < Context.allTeachers.size(); i++) {
+                Teacher teacher = Context.allTeachers.get(i);
+                if (teacher.getId().equals(Context.currentTeacher.getId())) {
+                    Context.allTeachers.set(i, Context.currentTeacher);
+                    break;
+                }
+            }
             if (Context.isSQLConnect) {
                 MysqlConnection connection = new MysqlConnection();
                 connection.insert(Context.currentTeacher);
             }
+            Stage stage = (Stage) teacherName.getScene().getWindow();
             stage.close();
 
         } else {

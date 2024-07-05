@@ -40,8 +40,8 @@ public class SQLController {
             MysqlConnection connection = new MysqlConnection();
             if (connection.isExist()) {
                 connection.getAll();
-                onLoadSQLSuccess();
                 Context.isSQLConnect = true;
+                onLoadSQLSuccess();
             } else {
                 if (connection.createTable()) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

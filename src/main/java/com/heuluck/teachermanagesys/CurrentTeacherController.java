@@ -1,5 +1,6 @@
 package com.heuluck.teachermanagesys;
 
+import Database.MysqlConnection;
 import Teacher.Teacher;
 import com.alibaba.fastjson2.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ public class CurrentTeacherController {
         titleTeachName.setText(currentTeacher.getName());
         ObservableList<Teacher> teacher = FXCollections.observableArrayList(currentTeacher);
         dataTable.setItems(teacher);
+        dataTable.refresh();
 
         /* 班级列表 */
         teachClasses.getChildren().clear();
@@ -50,17 +52,16 @@ public class CurrentTeacherController {
                         teacher1.deleteClass(singleClass);
                     }
                 });
+                if(Context.isSQLConnect){
+                    MysqlConnection connection = new MysqlConnection();
+                    connection.insert(Context.currentTeacher);
+                }
                 initialize();
             });
 
             hbox.getChildren().addAll(label, button);
             teachClasses.getChildren().add(hbox);
         }
-//        String text = "{\"id\": 2,\"name\": \"fastjson2\"}";
-//        JSONObject obj = JSON.parseObject(text);
-//        int id = obj.getIntValue("id");
-//        String name = obj.getString("name");
-//        System.out.print(id+"sad"+name);
         /* 课程列表 */
         teachLessons.getChildren().clear();
         for (String singleLesson : currentTeacher.getLessons()) {
@@ -75,6 +76,10 @@ public class CurrentTeacherController {
                         teacher1.deleteLesson(singleLesson);
                     }
                 });
+                if(Context.isSQLConnect){
+                    MysqlConnection connection = new MysqlConnection();
+                    connection.insert(Context.currentTeacher);
+                }
                 initialize();
             });
 
@@ -116,6 +121,10 @@ public class CurrentTeacherController {
                     teacher1.addClasses(classes);
                 }
             });
+            if(Context.isSQLConnect){
+                MysqlConnection connection = new MysqlConnection();
+                connection.insert(Context.currentTeacher);
+            }
             initialize();
         });
     }
@@ -134,6 +143,10 @@ public class CurrentTeacherController {
                     teacher1.addLessons(lessons);
                 }
             });
+            if(Context.isSQLConnect){
+                MysqlConnection connection = new MysqlConnection();
+                connection.insert(Context.currentTeacher);
+            }
             initialize();
         });
     }

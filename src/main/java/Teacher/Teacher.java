@@ -1,6 +1,7 @@
 package Teacher;
 
 import java.util.ArrayList;
+
 import utils.CustomArrayList;//自定义的工具类
 
 public class Teacher {
@@ -123,35 +124,49 @@ public class Teacher {
 
     public void setLabClassLength(int labClassLength) {
         this.labClassLength = labClassLength;
+        recalculate();
     }
 
     public void setTheoryClassLength(int theoryClassLength) {
         this.theoryClassLength = theoryClassLength;
+        recalculate();
     }
 
     public void setClasses(ArrayList<String> classes) {
         this.classes = classes;
+        recalculate();
     }
 
     public void setLessons(ArrayList<String> lessons) {
         this.lessons = lessons;
     }
 
-    public void addClasses(String classes){
+    public void addClasses(String classes) {
         this.classes.addAll(CustomArrayList.toList(classes.split(";")));
         CustomArrayList.deduplication(this.classes);
+        recalculate();
     }
 
-    public void addLessons(String lessons){
+    public void addLessons(String lessons) {
         this.lessons.addAll(CustomArrayList.toList(lessons.split(";")));
         CustomArrayList.deduplication(this.lessons);
     }
 
-    public void deleteClass(String singleClass){
+    public void deleteClass(String singleClass) {
         this.classes.remove(singleClass);
+        recalculate();
     }
 
-    public void deleteLesson(String singleLesson){
+    public void deleteLesson(String singleLesson) {
         this.lessons.remove(singleLesson);
+    }
+
+    private void recalculate() {
+        this.numOfClasses = this.classes.size();
+        if (this.numOfClasses <= 2)
+            this.totalLength = 1.5 * (theoryClassLength + labClassLength);
+        else if (this.numOfClasses == 3)
+            this.totalLength = 2 * (theoryClassLength + labClassLength);
+        else this.totalLength = 2.5 * (theoryClassLength + labClassLength);
     }
 }

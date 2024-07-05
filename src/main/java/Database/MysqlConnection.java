@@ -133,17 +133,17 @@ public class MysqlConnection {
     public void InsertAll() {
         connect();
         String sql = """
-                  INSERT INTO teachers(id,name,sex,`rank`,lessons,classes,theoryClassLength,labClassLength)
-                  VALUES(?,?,?,?,?,?,?,?)
-                  ON DUPLICATE KEY UPDATE
-                  name = VALUES(name),
-                  sex = VALUES(sex),
-                  `rank` = VALUES(`rank`),
-                  lessons = VALUES(lessons),
-                  classes = VALUES(classes),
-                  theoryClassLength = VALUES(theoryClassLength),
-                  labClassLength = VALUES(labClassLength);
-            """;
+                      INSERT INTO teachers(id,name,sex,`rank`,lessons,classes,theoryClassLength,labClassLength)
+                      VALUES(?,?,?,?,?,?,?,?)
+                      ON DUPLICATE KEY UPDATE
+                      name = VALUES(name),
+                      sex = VALUES(sex),
+                      `rank` = VALUES(`rank`),
+                      lessons = VALUES(lessons),
+                      classes = VALUES(classes),
+                      theoryClassLength = VALUES(theoryClassLength),
+                      labClassLength = VALUES(labClassLength);
+                """;
         Context.allTeachers.forEach(teacher -> {
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
@@ -162,6 +162,46 @@ public class MysqlConnection {
                 System.out.println(e.toString());
             }
         });
+        try {
+            conn.close();
+        } catch (SQLException se) {
+            System.out.println("关闭数据库时出现数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.println("关闭数据库时出现错误：" + e.toString());
+        }
+    }
+
+    public void insert(Teacher teacher) {
+        connect();
+        String sql = """
+                      INSERT INTO teachers(id,name,sex,`rank`,lessons,classes,theoryClassLength,labClassLength)
+                      VALUES(?,?,?,?,?,?,?,?)
+                      ON DUPLICATE KEY UPDATE
+                      name = VALUES(name),
+                      sex = VALUES(sex),
+                      `rank` = VALUES(`rank`),
+                      lessons = VALUES(lessons),
+                      classes = VALUES(classes),
+                      theoryClassLength = VALUES(theoryClassLength),
+                      labClassLength = VALUES(labClassLength);
+                """;
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, teacher.getId());
+            ps.setString(2, teacher.getName());
+            ps.setString(3, teacher.getSex());
+            ps.setString(4, teacher.getRank());
+            ps.setString(5, String.join(";", teacher.getLessons()));
+            ps.setString(6, String.join(";", teacher.getClasses()));
+            ps.setInt(7, teacher.getTheoryClassLength());
+            ps.setInt(8, teacher.getLabClassLength());
+            ps.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println("数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
         try {
             conn.close();
         } catch (SQLException se) {

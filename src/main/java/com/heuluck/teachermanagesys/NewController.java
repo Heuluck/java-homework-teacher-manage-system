@@ -1,5 +1,6 @@
 package com.heuluck.teachermanagesys;
 
+import Database.MysqlConnection;
 import Teacher.Teacher;
 import utils.validate;
 import javafx.fxml.FXML;
@@ -51,13 +52,24 @@ public class NewController {
         if (teacherSex.getValue() != null &&
                 validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
                         teacherClasses, teacherTheoryClassLength, teacherLabClassLength)) {
-
-            Context.currentTeacher = new Teacher(teacherId.getText(), teacherName.getText(), teacherSex.getValue(), teacherRank.getText(),
-                    teacherLessons.getText(),teacherClasses.getText(),
-                    Integer.parseInt(teacherTheoryClassLength.getText()),Integer.parseInt(teacherLabClassLength.getText()));
-            Context.allTeachers.add(Context.currentTeacher);
-            Stage stage = (Stage) teacherName.getScene().getWindow();
-            stage.close();
+            if(isConflict(teacherId.getText())){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("教师号重复");
+                alert.setHeaderText("所填写的教师号"+teacherId.getText()+"与现有教师重复");
+                alert.setContentText("请检查后正确填写");
+                alert.showAndWait();
+            }else {
+                Context.currentTeacher = new Teacher(teacherId.getText(), teacherName.getText(), teacherSex.getValue(), teacherRank.getText(),
+                        teacherLessons.getText(),teacherClasses.getText(),
+                        Integer.parseInt(teacherTheoryClassLength.getText()),Integer.parseInt(teacherLabClassLength.getText()));
+                Context.allTeachers.add(Context.currentTeacher);
+                Stage stage = (Stage) teacherName.getScene().getWindow();
+                if(Context.isSQLConnect){
+                    MysqlConnection connection = new MysqlConnection();
+                    connection.insert(Context.currentTeacher);
+                }
+                stage.close();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("请填写所有数据");
@@ -65,5 +77,9 @@ public class NewController {
             alert.setContentText("存在未填写的数据");
             alert.showAndWait();
         }
+    }
+
+    private boolean isConflict(String id){
+        return Context.allTeachers.stream().anyMatch(teacher -> id.equals(teacher.getId()));
     }
 }

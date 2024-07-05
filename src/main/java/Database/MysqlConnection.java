@@ -71,8 +71,7 @@ public class MysqlConnection {
         connect();
         try {
             stmt = conn.createStatement();
-            String sql;
-            sql = """
+            String sql = """
                     create table if not exists teachers
                     (
                         id                varchar(50)  not null

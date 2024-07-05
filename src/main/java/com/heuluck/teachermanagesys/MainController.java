@@ -43,7 +43,7 @@ public class MainController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("current-teacher-view.fxml"));
             Stage currentTeacherStage = new Stage();
             currentTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
-            currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
+            currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 540));
             currentTeacherStage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -152,7 +152,7 @@ public class MainController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("关于");
         alert.setHeaderText("教师工作量管理系统");
-        alert.setContentText("Heuluck 计算机I类\n Github仓库：https://github.com/Heuluck/java-homework-teacher-manage-system");
+        alert.setContentText("Heuluck\n是一个实习作业 \nGithub仓库：https://github.com/Heuluck/java-homework-teacher-manage-system");
         alert.showAndWait();
     }
 }

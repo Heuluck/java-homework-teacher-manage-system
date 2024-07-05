@@ -1,3 +1,13 @@
 .titleText {
     -fx-font-size: 28px;
 }
+
+Button{
+    -fx-padding: 8px;
+}
+
+Button:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-opacity: .7;
+}

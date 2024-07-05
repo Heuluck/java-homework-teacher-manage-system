@@ -76,7 +76,7 @@ public class SearchController {
                         Stage currentTeacherStage = new Stage();
                         currentTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
                         try {
-                            currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
+                            currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 540));
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -147,7 +147,7 @@ public class SearchController {
                     Stage currentTeacherStage = new Stage();
                     currentTeacherStage.setTitle(Context.currentTeacher.getName() + "老师 - 教师管理系统");
                     try {
-                        currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 640));
+                        currentTeacherStage.setScene(new Scene(fxmlLoader.load(), 920, 540));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

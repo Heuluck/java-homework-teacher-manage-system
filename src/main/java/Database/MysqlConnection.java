@@ -40,36 +40,6 @@ public class MysqlConnection {
         }
     }
 
-    public void getAll() {
-        connect();
-        try {
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT * FROM teachers";
-            ResultSet rs = stmt.executeQuery(sql);
-            Context.SQLTeachers = new ArrayList<Teacher>();
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String name = rs.getString("name");
-                String sex = rs.getString("sex");
-                String rank = rs.getString("rank");
-                String lessons = rs.getString("lessons");
-                String classes = rs.getString("classes");
-                int theoryLength = rs.getInt("theoryClassLength");
-                int labLength = rs.getInt("labClassLength");
-                Teacher teacher = new Teacher(id, name, sex, rank, lessons, classes, theoryLength, labLength);
-                Context.SQLTeachers.add(teacher);
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException se) {
-            System.out.println("数据库错误：" + se.toString());
-        } catch (Exception e) {
-            System.out.print(e.toString());
-        }
-    }
-
     public boolean isExist() {
         connect();
         try {
@@ -127,6 +97,78 @@ public class MysqlConnection {
         } catch (Exception e) {
             System.out.println(e.toString());
             return false;
+        }
+    }
+
+    public void getAll() {
+        connect();
+        try {
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM teachers";
+            ResultSet rs = stmt.executeQuery(sql);
+            Context.SQLTeachers = new ArrayList<Teacher>();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String name = rs.getString("name");
+                String sex = rs.getString("sex");
+                String rank = rs.getString("rank");
+                String lessons = rs.getString("lessons");
+                String classes = rs.getString("classes");
+                int theoryLength = rs.getInt("theoryClassLength");
+                int labLength = rs.getInt("labClassLength");
+                Teacher teacher = new Teacher(id, name, sex, rank, lessons, classes, theoryLength, labLength);
+                Context.SQLTeachers.add(teacher);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            System.out.println("数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.print(e.toString());
+        }
+    }
+
+    public void InsertAll() {
+        connect();
+        String sql = """
+                  INSERT INTO teachers(id,name,sex,`rank`,lessons,classes,theoryClassLength,labClassLength)
+                  VALUES(?,?,?,?,?,?,?,?)
+                  ON DUPLICATE KEY UPDATE
+                  name = VALUES(name),
+                  sex = VALUES(sex),
+                  `rank` = VALUES(`rank`),
+                  lessons = VALUES(lessons),
+                  classes = VALUES(classes),
+                  theoryClassLength = VALUES(theoryClassLength),
+                  labClassLength = VALUES(labClassLength);
+            """;
+        Context.allTeachers.forEach(teacher -> {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, teacher.getId());
+                ps.setString(2, teacher.getName());
+                ps.setString(3, teacher.getSex());
+                ps.setString(4, teacher.getRank());
+                ps.setString(5, String.join(";", teacher.getLessons()));
+                ps.setString(6, String.join(";", teacher.getClasses()));
+                ps.setInt(7, teacher.getTheoryClassLength());
+                ps.setInt(8, teacher.getLabClassLength());
+                ps.executeUpdate();
+            } catch (SQLException se) {
+                System.out.println("数据库错误：" + se.toString());
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        });
+        try {
+//            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            System.out.println("关闭数据库时出现数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.println("关闭数据库时出现错误：" + e.toString());
         }
     }
 }

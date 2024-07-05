@@ -70,8 +70,8 @@ public class SQLController {
     private void onLoadSQLSuccess() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("数据库加载成功");
-        alert.setHeaderText("数据库加载成功");
-        alert.setContentText("合并还是覆盖当前本地数据？（请谨慎选择）");
+        alert.setHeaderText("数据库加载成功，合并还是覆盖当前本地数据？（请谨慎选择）");
+        alert.setContentText("合并完成后，将同步更新数据库数据（不可恢复）\n覆盖将删除所有本地数据");
 
         ButtonType buttonMerge = new ButtonType("合并");
         ButtonType buttonReplace = new ButtonType("覆盖所有");
@@ -120,12 +120,16 @@ public class SQLController {
                     return conflicts.stream().anyMatch(conflict -> localId.equals(conflict));
                 });
                 Context.allTeachers.addAll(Context.SQLTeachers);
+                MysqlConnection connection = new MysqlConnection();
+                connection.InsertAll();
             } else if (result.isPresent() && result.get() == buttonLocal) {
                 Context.SQLTeachers.removeIf(SQLData -> {
                     String SQLId = SQLData.getId();
                     return conflicts.stream().anyMatch(conflict -> SQLId.equals(conflict));
                 });
                 Context.allTeachers.addAll(Context.SQLTeachers);
+                MysqlConnection connection = new MysqlConnection();
+                connection.InsertAll();
             } else {
                 Context.SQLTeachers = new ArrayList<Teacher>();
                 Context.isSQLConnect = false;

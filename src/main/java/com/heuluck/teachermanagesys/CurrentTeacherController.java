@@ -108,6 +108,17 @@ public class CurrentTeacherController {
     }
 
     @FXML
+    protected void alter () throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("alter-view.fxml"));
+        Stage alterTeacherStage = new Stage();
+        alterTeacherStage.setTitle("修改教师 - 教师管理系统");
+        alterTeacherStage.setScene(new Scene(fxmlLoader.load(), 300, 600));
+        alterTeacherStage.show();
+        alterTeacherStage.setOnHidden(e->initialize());
+
+    }
+
+    @FXML
     protected void addClasses(){
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("新增班级");

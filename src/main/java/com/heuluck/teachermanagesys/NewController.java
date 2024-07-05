@@ -2,7 +2,7 @@ package com.heuluck.teachermanagesys;
 
 import Database.MysqlConnection;
 import Teacher.Teacher;
-import utils.validate;
+import utils.Validate;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -50,7 +50,7 @@ public class NewController {
     @FXML
     protected void onNewTeacherSubmit() throws IOException { //提交新老师表单
         if (teacherSex.getValue() != null &&
-                validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
+                Validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
                         teacherClasses, teacherTheoryClassLength, teacherLabClassLength)) {
             if(isConflict(teacherId.getText())){
                 Alert alert = new Alert(Alert.AlertType.WARNING);

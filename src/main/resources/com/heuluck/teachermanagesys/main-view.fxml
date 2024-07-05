@@ -22,6 +22,7 @@
             <Button styleClass="importInfo" text="从文件导入" onAction="#onImportButtonClick"/>
             <Button text="加载示例信息" onAction="#onLoadDefaultTeachButtonClick"/>
             <Button styleClass="linkDB" text="连接数据库" onAction="#onLinkDBButtonClick"/>
+            <Button styleClass="linkDB" text="关于" onAction="#onAboutButtonClick"/>
         </HBox>
     </VBox>
 </VBox>

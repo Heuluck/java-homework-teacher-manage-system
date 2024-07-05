@@ -5,7 +5,7 @@ import Teacher.Teacher;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import utils.validate;
+import utils.Validate;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class SQLController {
 
     @FXML
     protected void onSubmit() throws IOException { //提交新老师表单
-        if (validate.isTextAllFilled(DBIp, DBName, DBPort, DBName, DBUser, DBPwd)) {
+        if (Validate.isTextAllFilled(DBIp, DBName, DBPort, DBName, DBUser, DBPwd)) {
             MysqlConnection.setDBPassword(DBPwd.getText());
             MysqlConnection.setDBURL("jdbc:mysql://" + DBIp.getText() + ":" + DBPort.getText() + "/" + DBName.getText());
             MysqlConnection.setDBUser(DBUser.getText());
@@ -127,7 +127,7 @@ public class SQLController {
                 });
                 Context.allTeachers.addAll(Context.SQLTeachers);
                 MysqlConnection connection = new MysqlConnection();
-                connection.InsertAll();
+                connection.insertAll();
                 Stage stage = (Stage) DBName.getScene().getWindow();
                 stage.close();
             } else if (result.isPresent() && result.get() == buttonLocal) {
@@ -137,7 +137,7 @@ public class SQLController {
                 });
                 Context.allTeachers.addAll(Context.SQLTeachers);
                 MysqlConnection connection = new MysqlConnection();
-                connection.InsertAll();
+                connection.insertAll();
                 Stage stage = (Stage) DBName.getScene().getWindow();
                 stage.close();
             } else {

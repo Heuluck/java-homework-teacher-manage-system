@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import utils.validate;
+import utils.Validate;
 
 import java.io.IOException;
 
@@ -61,16 +61,16 @@ public class AlterController {
     @FXML
     protected void onAlterTeacherSubmit() throws IOException { //提交新老师表单
         if (teacherSex.getValue() != null &&
-                validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
+                Validate.isTextAllFilled(teacherId, teacherName, teacherRank, teacherLessons,
                         teacherClasses, teacherTheoryClassLength, teacherLabClassLength)) {
 
             Context.currentTeacher = new Teacher(teacherId.getText(), teacherName.getText(), teacherSex.getValue(), teacherRank.getText(),
                     teacherLessons.getText(), teacherClasses.getText(),
                     Integer.parseInt(teacherTheoryClassLength.getText()), Integer.parseInt(teacherLabClassLength.getText()));
-            for (int i = 0; i < Context.allTeachers.size(); i++) {
-                Teacher teacher = Context.allTeachers.get(i);
+            for (int index = 0; index < Context.allTeachers.size(); index++) {
+                Teacher teacher = Context.allTeachers.get(index);
                 if (teacher.getId().equals(Context.currentTeacher.getId())) {
-                    Context.allTeachers.set(i, Context.currentTeacher);
+                    Context.allTeachers.set(index, Context.currentTeacher);
                     break;
                 }
             }

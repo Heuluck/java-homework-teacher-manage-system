@@ -130,7 +130,7 @@ public class MysqlConnection {
         }
     }
 
-    public void InsertAll() {
+    public void insertAll() {
         connect();
         String sql = """
                       INSERT INTO teachers(id,name,sex,`rank`,lessons,classes,theoryClassLength,labClassLength)

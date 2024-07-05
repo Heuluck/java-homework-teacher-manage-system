@@ -146,4 +146,13 @@ public class MainController {
         Context.allTeachers.add(new Teacher("9109220164", "王五", "男", "讲师",
                 "大学英语;国家社会", "231;237", 5, 0));
     }
+
+    @FXML
+    protected void onAboutButtonClick(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("关于");
+        alert.setHeaderText("教师工作量管理系统");
+        alert.setContentText("Heuluck 计算机I类\n Github仓库：https://github.com/Heuluck/java-homework-teacher-manage-system");
+        alert.showAndWait();
+    }
 }

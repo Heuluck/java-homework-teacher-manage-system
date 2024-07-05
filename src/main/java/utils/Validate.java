@@ -2,7 +2,7 @@ package utils;
 
 import javafx.scene.control.TextField;
 
-public class validate {
+public class Validate {
     public static boolean isTextAllFilled(TextField... items) {
         for (TextField item : items) {
             if (!isTextFilled(item))

@@ -66,5 +66,6 @@ public class ListController {
             return teacherRow;
         });
         dataTable.setItems(teacher);
+        dataTable.refresh();
     }
 }

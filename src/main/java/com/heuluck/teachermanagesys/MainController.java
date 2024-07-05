@@ -55,9 +55,9 @@ public class MainController {
     }
 
     @FXML
-    protected void onOpenListButtonClick() throws IOException {
+    protected void onOpenSearchButtonClick() throws IOException {
         if (Context.allTeachers != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("list-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("search-view.fxml"));
             Stage listStage = new Stage();
             listStage.setTitle("所有教师 - 教师管理系统");
             listStage.setScene(new Scene(fxmlLoader.load(), 920, 640));

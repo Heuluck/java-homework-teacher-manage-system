@@ -17,7 +17,7 @@
         <Label styleClass="titleText" text="教师工作量管理系统"/>
         <HBox alignment="CENTER" spacing="20.0">
             <Button styleClass="newTeacher" text="新建教师" onAction="#onNewButtonClick"/>
-            <Button styleClass="openList" text="教师列表" onAction="#onOpenListButtonClick"/>
+            <Button styleClass="openList" text="所有教师/搜索教师" onAction="#onOpenSearchButtonClick"/>
             <Button styleClass="currentTeacher" text="当前教师信息" onAction="#onCurrentTeachButtonClick"/>
             <Button styleClass="importInfo" text="从文件导入" onAction="#onImportButtonClick"/>
             <Button text="加载示例信息" onAction="#onLoadDefaultTeachButtonClick"/>

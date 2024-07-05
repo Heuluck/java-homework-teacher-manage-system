@@ -210,4 +210,25 @@ public class MysqlConnection {
             System.out.println("关闭数据库时出现错误：" + e.toString());
         }
     }
+
+    public void delete(Teacher teacher) {
+        connect();
+        String sql = "DELETE FROM teachers WHERE id = ?;";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, teacher.getId());
+            ps.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println("数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        try {
+            conn.close();
+        } catch (SQLException se) {
+            System.out.println("关闭数据库时出现数据库错误：" + se.toString());
+        } catch (Exception e) {
+            System.out.println("关闭数据库时出现错误：" + e.toString());
+        }
+    }
 }

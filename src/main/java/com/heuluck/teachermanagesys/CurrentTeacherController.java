@@ -135,6 +135,20 @@ public class CurrentTeacherController {
     }
 
     @FXML
+    protected void delete(){
+        Context.allTeachers.removeIf(teacher -> {
+            return teacher.getId().equals(currentTeacher.getId());
+        });
+        if(Context.isSQLConnect){
+            MysqlConnection connection = new MysqlConnection();
+            connection.delete(Context.currentTeacher);
+        }
+        currentTeacher = null;
+        Stage stage = (Stage) teachClasses.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
     protected void addClasses() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("新增班级");
